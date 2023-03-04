@@ -28,10 +28,10 @@
 # print(message)
 # print('Hello', name, name2)
 
-name = input('enter your name: ')
-print("your name is:", name)
-# print("name type is:", type(name))
-family = input('enter your family: ')
+# name = input('enter your name: ')
+# print("your name is:", name)
+# # print("name type is:", type(name))
+# family = input('enter your family: ')
 
-message = "hello " + name + " " + family
-print(message)
+# message = "hello " + name + " " + family
+# print(message)
