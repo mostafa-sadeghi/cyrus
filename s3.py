@@ -54,23 +54,32 @@
 
 
 # we can use float for floating point numbers instead
-first_number = int(input('enter number 1: '))
-print(type(first_number))
+# first_number = int(input('enter number 1: '))
+# print(type(first_number))
 
-second_number = int(input('enter number 2: '))
-print(type(second_number))
+# second_number = int(input('enter number 2: '))
+# print(type(second_number))
 
-output = first_number + second_number
+# output = first_number + second_number
 
-print(f'{first_number} + {second_number} = {output}')
+# print(f'{first_number} + {second_number} = {output}')
 
 
-n1 = float(input('enter a number :'))
-n2 = float(input('enter a number :'))
+# n1 = float(input('enter a number :'))
+# n2 = float(input('enter a number :'))
 
-print(f'{n1+n2}')
+# print(f'{n1+n2}')
 
-# exercise 1: write a program that gives student's name and three scores and then calculate student's average
+# exercise 1: write a program that gets student's name and three scores and then calculate student's average
 # print message like this which shows student's name and average as :
 # cyrus's average is : 90
 # NOTE : average is sum of three score / 3
+
+name = input("enter student's name:> ")
+score1 = float(input('enter first score:> '))
+score2 = float(input('enter second score:> '))
+score3 = float(input('enter third score:> '))
+
+average = (score1 + score2 + score3) / 3
+
+print(f"{name}'s average is : {average:.2f}")
