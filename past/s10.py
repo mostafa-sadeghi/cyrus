@@ -1,0 +1,27 @@
+import turtle
+import time
+screen = turtle.Screen()
+screen.setup(620, 620)
+screen.bgcolor('black')
+COLORS = ('red', 'green', 'blue', 'yellow', 'purple')
+pen = turtle.Turtle()
+pen.pensize(4)
+pen.shape('turtle')
+pen.penup()
+pen.pencolor('red')
+for i in range(12):
+    pen.penup()
+    pen.setheading(-30 * i + 60)
+    pen.forward(150)
+    pen.pendown()
+    pen.forward(25)
+    pen.penup()
+    pen.forward(20)
+    pen.write(str(i+1), align="center", font=("Arial", 12, "normal"))
+    pen.home()
+pen.home()
+pen.setpos(0,-250)
+pen.pendown()
+pen.circle(250)
+
+turtle.done()
