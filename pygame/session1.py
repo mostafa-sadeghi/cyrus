@@ -1,48 +1,68 @@
 import pygame
 
-# Initialize pygame
 pygame.init()
 
-# Create a display surface and set its caption
 WINDOW_WIDTH = 600
-WINDOW_HEIGHT = 600
-
+WINDOW_HEIGHT = 300
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Our first game!")
+pygame.display.set_caption("Blitting Images!")
+
+sound1 = pygame.mixer.Sound("sound_1.wav")
+sound2 = pygame.mixer.Sound("sound_2.wav")
+
+# sound1.play()
+# pygame.time.delay(1000)
+# sound2.play()
+
+pygame.mixer.music.load('music.wav')
+pygame.mixer.music.play(-1, 0.0)
 
 
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-CYAN = (0, 255, 255)
-MAGENTA = (255, 0, 255)
+dragon_left_image = pygame.image.load("dragon_left.png")
+dragon_left_rect = dragon_left_image.get_rect()
+dragon_left_rect.topleft = (0, 0)
 
-display_surface.fill(BLUE)
+dragon_right_image = pygame.image.load("dragon_right.png")
+dragon_right_rect = dragon_right_image.get_rect()
+dragon_right_rect.topright = (WINDOW_WIDTH, 0)
 
 
+dragon_image = pygame.image.load('dragon_right.png')
+dragon_image_rect = dragon_image.get_rect()
+dragon_image_rect.centerx = WINDOW_WIDTH//2
+dragon_image_rect.bottom = WINDOW_HEIGHT
 
-
-
-# pygame.draw.line(display_surface, RED, (0, 0), (100, 100), 5)
-# pygame.draw.line(display_surface, GREEN, (100, 100), (200, 300), 1)
-
-# pygame.draw.circle(display_surface, WHITE,
-#                    (WINDOW_WIDTH//2, WINDOW_HEIGHT//2), 200, 6)
-# pygame.draw.circle(display_surface, YELLOW,
-#                    (WINDOW_WIDTH//2, WINDOW_HEIGHT//2), 195, 0)
-
-# pygame.draw.rect(display_surface, CYAN, (500, 0, 100, 100))
-# pygame.draw.rect(display_surface, CYAN, (500, 100, 50, 100))
-
+VELOCITY = 30
 # The main game loop
 running = True
 while running:
-    # Loop through a list of event objects that have occured
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                dragon_image_rect.x -= VELOCITY
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                dragon_image_rect.x += VELOCITY
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                dragon_image_rect.y -= VELOCITY
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                dragon_image_rect.y += VELOCITY
+    display_surface.fill((0, 0, 0))
+    # Blit (copy) a surface object at the given coordinates to our display
+    display_surface.blit(dragon_left_image, dragon_left_rect)
+    display_surface.blit(dragon_right_image, dragon_right_rect)
+    display_surface.blit(dragon_image, dragon_image_rect)
+
+    pygame.draw.line(display_surface, (255, 255, 255),
+                     (0, 75), (WINDOW_WIDTH, 75), 4)
+
+    # Update the display
     pygame.display.update()
+
+# End the game
 pygame.quit()
