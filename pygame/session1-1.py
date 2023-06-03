@@ -30,9 +30,11 @@ system_text_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
 
 
 custom_font = pygame.font.Font('AttackGraffiti.ttf', 32)
-custom_text = custom_font.render('Dragon', True, (0, 255, 0))
+custom_text = custom_font.render('Dragon', True,\
+                                  (0, 255, 0))
 custom_text_rect = custom_text.get_rect()
-custom_text_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2 + 100)
+custom_text_rect.center = (WINDOW_WIDTH//2,\
+                            WINDOW_HEIGHT//2 + 100)
 
 # The main game loop
 running = True
