@@ -21,7 +21,7 @@ def make_turtle(turtle_shape, turtle_color):
 
 def change_food_position():
     food_x = randrange(-270, 270)
-    food_y = randrange(-270, 270)
+    food_y = randrange(-270, 210)
     return food_x, food_y
 
 
@@ -29,3 +29,13 @@ def move_snake(snake):
     if snake.direction == "up":
         yposition = snake.ycor()
         snake.sety(yposition + 20)
+    if snake.direction == "down":
+        yposition = snake.ycor()
+        snake.sety(yposition - 20)
+    if snake.direction == "right":
+        xposition = snake.xcor()
+        snake.setx(xposition + 20)
+    if snake.direction == "left":
+        xposition = snake.xcor()
+        snake.setx(xposition - 20)
+
