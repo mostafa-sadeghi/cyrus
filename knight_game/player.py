@@ -10,9 +10,16 @@ class Player(Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottom = SCREEN_HEIGHT
         self.rect.centerx = SCREEN_WIDTH/2
-
+        self.warp_counter = 3
         self.lives = 3
         self.velocity = 5
+
+    def warp(self):
+        if self.warp_counter > 0:
+            self.rect.bottom = SCREEN_HEIGHT
+            self.rect.centerx = SCREEN_WIDTH/2
+            self.warp_counter -= 1
+
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
