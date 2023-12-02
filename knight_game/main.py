@@ -68,16 +68,49 @@ def choose_enemy_target():
 
 
 def check_collisions():
+    global score
     collided_monster = pygame.sprite.spritecollideany(my_player, enemy_group)
     if collided_monster:
         if collided_monster.type == target_enemy_type:
             collided_monster.kill()
+            score += 1
             if len(enemy_group) == 0:
                 start_new_level()
             else:
                 choose_enemy_target()
+        else:
+            my_player.reset()
+            my_player.lives -= 1
+            if my_player.lives <= 0:
+                game_over()
 
 
+
+def game_over():
+    global running,score,level_number
+    game_over_text = font.render("Game Over\nPress Enter to play again", True, (240,10,178))
+    game_over_rect = game_over_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    main_surface.fill((0,0,0))
+    main_surface.blit(game_over_text,game_over_rect)
+    pygame.display.update()
+
+    score = 0
+    my_player.lives = 3
+    level_number = 0
+    enemy_group.empty()
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    paused = False
+                    start_new_level()
+
+            if event.type == pygame.QUIT:
+                paused = False
+                running = False
+
+    
             
 
 
